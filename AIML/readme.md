@@ -1,10 +1,10 @@
 # AI/ML Head
 
-## Your task is to create a Simple Neural Network without using any library other than NumPy.
+## Your task is to create a Neural Network to solve a classification problem with only using NumPY and Pandas.
 
 ### Success Criterion :
 
-- Build the Core Network: Start by creating a simple, single-script neural network using only Python and NumPy. The goal is your network should be able to successfully perform classification tasks on a simple dataset.
+- Build the Core Network: Start by creating a simple, single-script neural network using only Python with NumPy and Pandas. The goal is your network should be able to successfully perform classification tasks on a simple dataset.
 
 - Create a Reusable Library: Refactor the initial script into an object-oriented, Pytorch-like library. The key is to create classes like Sequential to manage the model and DenseLayer for network layers, along with methods like `.add()`, `.compile()`, and `.fit()`.
 
