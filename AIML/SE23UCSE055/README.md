@@ -12,7 +12,7 @@ It supports dynamic compute graph construction and basic neural network modules 
 
 ## Quick Start
 
-- Run the main demo: [`demos/demo.ipynb`](./demos/demo.ipynb)\
+- Run the main demo: [`demos/demo.ipynb`](./demos/demo.ipynb)
 - Watch the video walkthrough: [`demos/demo_video.ipynb`](./demos/demo_video.ipynb)
 
 > **Note**: You’ll need to install *Jupyter* and *Matplotlib* manually — it’s not included in the `requirements.txt`.
@@ -46,7 +46,7 @@ The architecture mirrors PyTorch (in spirit), but simplified.
 
 [![Watch on YouTube](https://img.youtube.com/vi/ZfOjHAf6IfA/hqdefault.jpg)](https://youtu.be/ZfOjHAf6IfA)
 
-Small 5min video going over the project, its a good starting point if you want to understand the overall structure of the project and some of the inner-workings.
+Small 5min video going over the project, its a good starting point if you want to understand the overall structure of the project and some of its inner-workings.
 
 ---
 
