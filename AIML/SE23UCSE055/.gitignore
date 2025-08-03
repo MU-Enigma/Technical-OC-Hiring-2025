@@ -1,0 +1,10 @@
+**/*.mp4
+**/.DS_Store
+**compute_graph_example
+**/*.pdf
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+**/.ipynb_checkpoints
+**/*.csv
