@@ -42,6 +42,15 @@ FileCrypt is a desktop application that provides secure, end-to-end encrypted fi
 
 ---
 
+
+### 🎥 Video Demo
+
+Watch a full demonstration of the application, including the vulnerability exploit and an explanation of the security patch.
+
+[![Watch the video](https://img.shields.io/badge/Watch-Video_Demo-red.svg)](https://youtu.be/h_ROTfXwC3M)
+
+---
+
 ### 🔬 Project Demonstration: Vulnerability & Patch
 
 This project demonstrates a critical security flaw and its solution, forming a complete secure development lifecycle.
