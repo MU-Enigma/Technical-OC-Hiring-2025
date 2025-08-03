@@ -1,9 +1,14 @@
 <pre>
-  _____ _ _      ____                _   
- |  ___| (_) ___|  _ \ ___  __ _ ___| |_ 
- | |_  | | |/ __| |_) / _ \/ _` / __| __|
- |  _| | | | (__|  _ <  __/ (_| \__ \ |_ 
- |_|   |_|_|\___|_| \_\___|\__,_|___/\__|
+  
+░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓████████▓▒░       ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░▒▓████████▓▒░ 
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░     
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░             ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░     
+░▒▓██████▓▒░ ░▒▓█▓▒░▒▓█▓▒░      ░▒▓██████▓▒░        ░▒▓█▓▒░      ░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░  ░▒▓█▓▒░     
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░             ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░     
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░     
+░▒▓█▓▒░      ░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░       ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░     
+                                                                                                                      
+                                                                                                                      
                                         
 </pre>
 
@@ -27,28 +32,11 @@ FileCrypt is a desktop application that provides secure, end-to-end encrypted fi
 
 ---
 
-### 🛠️ Installation
-
-To run FileCrypt, you need Python 3 and a few external libraries.
-
-1.  **Install Python:** If you don't have it, download and install Python from [python.org](https://python.org/).
-
-2.  **Install Required Libraries:** Open your terminal or command prompt and run the following command:
-    ```bash
-    pip install ttkbootstrap cryptography
-    ```
-
----
-
 ### 🚀 Usage
 
-1.  Save the application code as a Python file (e.g., `filecrypt.py`).
-2.  Open your terminal or command prompt and navigate to the folder where you saved the file.
-3.  Run the application with the following command:
-    ```bash
-    python filecrypt.py
-    ```
-    The application window will open, and you can register a new user or log in.
+1.  Navigate to the **Releases** page of this repository.
+2.  Download the latest `FileCrypt.exe` file.
+3.  Double-click the downloaded file to run the application. No installation is required.
 
 ---
 
@@ -69,6 +57,23 @@ This project demonstrates a critical security flaw and its solution, forming a c
 > To make the application invulnerable to this type of metadata tampering, a robust cryptographic control must be implemented: **Digital Signatures**.
 
 * **The Solution:** The patched version of the application would require a user to load their private key to upload a file. It would then use this key to create a unique digital signature for the file's metadata (its owner and a unique ID). When the user logs in, the application would use their public key to verify the signature of every file. If a signature is invalid (meaning the database has been tampered with), the file is ignored. This securely binds each file to its owner and makes the database tamper-proof.
+
+---
+
+### 🛠️ Building from Source
+
+If you want to run or modify the source code directly, you'll need to set up a Python environment.
+
+1.  **Install Python:** If you don't have it, download and install Python from [python.org](https://www.python.org/).
+
+2.  **Install Required Libraries:** Open your terminal or command prompt and run the following command:
+    ```bash
+    pip install ttkbootstrap cryptography
+    ```
+3.  **Run the Script:**
+    ```bash
+    python filecrypt.py
+    ```
 
 ---
 
