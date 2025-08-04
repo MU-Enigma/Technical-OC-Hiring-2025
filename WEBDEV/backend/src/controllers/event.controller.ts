@@ -73,7 +73,6 @@ export const createEvent = async (req: Request, res: Response) => {
         location,
         date: new Date(date),
         userId: Number(req.userId),
-        updatedAt: new Date(),
       },
       include: {
         User: {
@@ -109,7 +108,6 @@ export const updateEvent = async (req: Request, res: Response) => {
         desc,
         location,
         date: date ? new Date(date) : undefined,
-        updatedAt: new Date(),
       },
     });
 

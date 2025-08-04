@@ -83,7 +83,6 @@ export const createBlog = async (req: Request, res: Response) => {
         content,
         posted: posted ?? false,
         authorId: Number(req.userId),
-        updatedAt: new Date(),
       },
     });
 
@@ -117,7 +116,6 @@ export const updateBlog = async (req: Request, res: Response) => {
         title,
         content,
         posted,
-        updatedAt: new Date(),
       },
     });
     res.json(updatedBlog);

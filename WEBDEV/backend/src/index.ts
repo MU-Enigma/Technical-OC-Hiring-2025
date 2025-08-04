@@ -5,11 +5,19 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.ts";
 import blogRoutes from "./routes/blog.routes.ts";
 import eventRoutes from "./routes/event.routes.ts";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 app.use(helmet());
 app.use(morgan("dev"));

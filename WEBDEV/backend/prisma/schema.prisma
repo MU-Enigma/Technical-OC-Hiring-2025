@@ -7,29 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id             Int      @id @default(autoincrement())
-  email          String   @unique
-  hashedPassword String
-  name           String
-  imageUrl       String?
-  createdAt      DateTime @default(now())
-
-  // Relations
-  Blog  Blog[]
-  Event Event[]
-}
-
 model Blog {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   posted    Boolean  @default(false)
-
-  authorId Int
-  User     User @relation(fields: [authorId], references: [id])
+  authorId  Int
+  User      User     @relation(fields: [authorId], references: [id])
 }
 
 model Event {
@@ -39,8 +25,18 @@ model Event {
   date      DateTime
   location  String?
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
+}
 
-  userId Int
-  User   User @relation(fields: [userId], references: [id])
+model User {
+  name           String
+  imageUrl       String?
+  createdAt      DateTime @default(now())
+  email          String   @unique
+  hashedPassword String
+  id             Int      @id @default(autoincrement())
+  Blog           Blog[]
+  Event          Event[]
 }
