@@ -33,6 +33,7 @@ export default function BlogPage() {
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [currentUserId, setCurrentUserId] = useState<number | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const fetchBlogs = async () => {
     try {
@@ -77,13 +78,20 @@ export default function BlogPage() {
     try {
       const res = await api.get("/api/auth/me");
       setCurrentUserId(res.data.userId);
+      setIsAdmin(res.data.isAdmin);
     } catch (err) {
       console.error("Failed to fetch current user:", err);
       setCurrentUserId(null);
+      setIsAdmin(false);
     }
   };
 
-  const handleDelete = async (blogId: number) => {
+  const handleDelete = async (blogId: number, isPublished: boolean) => {
+    if (!isPublished && !isAdmin) {
+      toast.error("Only published blogs can be deleted by admins");
+      return;
+    }
+
     try {
       setDeletingId(blogId);
       await api.delete(`/api/blogs/${blogId}`);
@@ -91,7 +99,11 @@ export default function BlogPage() {
       fetchBlogs();
     } catch (err: any) {
       console.error("Failed to delete blog:", err);
-      toast.error("Failed to delete blog");
+      if (err.response?.status === 403) {
+        toast.error(err.response.data.message || "Unauthorized action");
+      } else {
+        toast.error("Failed to delete blog");
+      }
     } finally {
       setDeletingId(null);
     }
@@ -140,6 +152,8 @@ export default function BlogPage() {
 
   const renderBlogCard = (blog: Blog) => {
     const isOwner = currentUserId === blog.authorId;
+    const canDelete = isOwner || (isAdmin && blog.posted); // Admin can only delete published blogs
+    const canEdit = isOwner; // Only owner can edit
     const previewContent = createPreview(blog.content);
 
     return (
@@ -159,25 +173,29 @@ export default function BlogPage() {
                 </span>
               )}
             </CardTitle>
-            {isOwner && isAuthenticated() && (
+            {(canEdit || canDelete) && isAuthenticated() && (
               <div className="flex gap-1 flex-shrink-0">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleEdit(blog)}
-                  className="h-8 w-8 p-0"
-                >
-                  <Edit className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleDelete(blog.id)}
-                  disabled={deletingId === blog.id}
-                  className="h-8 w-8 p-0"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
+                {canEdit && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleEdit(blog)}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </Button>
+                )}
+                {canDelete && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleDelete(blog.id, blog.posted)}
+                    disabled={deletingId === blog.id}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                )}
               </div>
             )}
           </div>

@@ -41,6 +41,7 @@ export default function EventsPage() {
   const [open, setOpen] = useState(false);
   const [editEventId, setEditEventId] = useState<number | null>(null);
   const [currentUserId, setCurrentUserId] = useState<number | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -72,9 +73,11 @@ export default function EventsPage() {
     try {
       const res = await api.get("/api/auth/me");
       setCurrentUserId(res.data.userId);
+      setIsAdmin(res.data.isAdmin);
     } catch (err) {
       console.error("Failed to fetch current user:", err);
       setCurrentUserId(null);
+      setIsAdmin(false);
     }
   };
 
@@ -103,11 +106,15 @@ export default function EventsPage() {
       fetchEvents();
     } catch (err: any) {
       console.error("Failed to create event:", err);
-      toast.error("Failed to create event", {
-        description:
-          err.response?.data?.message ||
-          "Please check your input and try again",
-      });
+      if (err.response?.status === 403) {
+        toast.error("Only admins can create events");
+      } else {
+        toast.error("Failed to create event", {
+          description:
+            err.response?.data?.message ||
+            "Please check your input and try again",
+        });
+      }
     } finally {
       setCreating(false);
     }
@@ -143,11 +150,15 @@ export default function EventsPage() {
       fetchEvents();
     } catch (err: any) {
       console.error("Failed to update event:", err);
-      toast.error("Failed to update event", {
-        description:
-          err.response?.data?.message ||
-          "Please check your input and try again",
-      });
+      if (err.response?.status === 403) {
+        toast.error("Only admins can update events");
+      } else {
+        toast.error("Failed to update event", {
+          description:
+            err.response?.data?.message ||
+            "Please check your input and try again",
+        });
+      }
     } finally {
       setUpdating(false);
     }
@@ -161,7 +172,11 @@ export default function EventsPage() {
       fetchEvents();
     } catch (err: any) {
       console.error("Failed to delete event:", err);
-      toast.error("Failed to delete event");
+      if (err.response?.status === 403) {
+        toast.error("Only admins can delete events");
+      } else {
+        toast.error("Failed to delete event");
+      }
     } finally {
       setDeleting(false);
     }
@@ -248,7 +263,7 @@ export default function EventsPage() {
           </Button>
           <h1 className="text-2xl font-bold">Events</h1>
         </div>
-        {isAuthenticated() && (
+        {isAdmin && (
           <Button
             onClick={() => {
               resetForm();
@@ -267,10 +282,12 @@ export default function EventsPage() {
           <h3 className="text-lg font-semibold mb-2">No events found</h3>
           <p className="text-muted-foreground mb-4">
             {isAuthenticated()
-              ? "Be the first to create an event!"
-              : "Please login to view and create events."}
+              ? isAdmin
+                ? "Create your first event!"
+                : "No events available yet"
+              : "No events available yet."}
           </p>
-          {isAuthenticated() && (
+          {isAdmin && (
             <Button
               onClick={() => {
                 resetForm();
@@ -297,7 +314,7 @@ export default function EventsPage() {
                     <CardTitle className="text-lg line-clamp-2">
                       {event.title}
                     </CardTitle>
-                    {isOwner && isAuthenticated() && (
+                    {isAdmin && (
                       <div className="flex gap-2">
                         <Button
                           variant="ghost"
