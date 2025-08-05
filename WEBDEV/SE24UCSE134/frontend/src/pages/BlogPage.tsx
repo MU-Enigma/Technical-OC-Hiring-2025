@@ -39,13 +39,13 @@ export default function BlogPage() {
     try {
       setLoading(true);
       const publicRes = await api.get("/api/blogs");
-      const publicBlogs = publicRes.data.blogs || publicRes.data;
+      const publicBlogs = publicRes.data.blogs;
 
       let myBlogs: Blog[] = [];
       if (isAuthenticated()) {
         try {
           const myRes = await api.get("/api/blogs/me");
-          myBlogs = Array.isArray(myRes.data) ? myRes.data : [];
+          myBlogs = myRes.data;
         } catch (err) {
           console.error("Failed to fetch user blogs:", err);
         }

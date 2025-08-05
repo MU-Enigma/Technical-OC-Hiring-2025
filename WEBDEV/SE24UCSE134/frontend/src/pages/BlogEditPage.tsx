@@ -19,7 +19,7 @@ interface Blog {
 export default function BlogEditPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const id = searchParams.get("id");
+  const id = searchParams.get("id"); // blogs/:id
 
   const [form, setForm] = useState<Blog>({
     title: "",
@@ -79,7 +79,7 @@ export default function BlogEditPage() {
     } catch (err: any) {
       console.error(
         id ? "Failed to update blog" : "Failed to create blog",
-        err,
+        err
       );
       toast.error(id ? "Failed to update blog" : "Failed to create blog", {
         description: err.response?.data?.message || "Please try again",
