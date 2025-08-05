@@ -87,7 +87,9 @@ export const Navbar = () => {
                       key={label}
                       href={href}
                       onClick={() => setIsOpen(false)}
-                      className={`w-full text-center ${buttonVariants({ variant: "ghost" })}`}
+                      className={`w-full text-center ${buttonVariants({
+                        variant: "ghost",
+                      })}`}
                     >
                       {label}
                     </a>

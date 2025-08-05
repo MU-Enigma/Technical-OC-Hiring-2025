@@ -18,7 +18,9 @@ import {
   UserIcon,
   Trash2,
   Edit,
+  Home,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Event {
   id: number;
@@ -46,6 +48,7 @@ export default function EventsPage() {
     date: "",
     time: "",
   });
+  const navigate = useNavigate();
 
   const fetchEvents = async () => {
     try {
@@ -234,7 +237,17 @@ export default function EventsPage() {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Events</h1>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => navigate("/")}
+          >
+            <Home className="w-5 h-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Events</h1>
+        </div>
         {isAuthenticated() && (
           <Button
             onClick={() => {
@@ -392,6 +405,7 @@ export default function EventsPage() {
                   type="date"
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
+                  className="text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-800 [&::-webkit-calendar-picker-indicator]:invert-[0.3] dark:[&::-webkit-calendar-picker-indicator]:invert-[0.8]"
                 />
               </div>
               <div>
@@ -425,10 +439,10 @@ export default function EventsPage() {
                 {creating
                   ? "Creating..."
                   : updating
-                    ? "Updating..."
-                    : editEventId
-                      ? "Update Event"
-                      : "Create Event"}
+                  ? "Updating..."
+                  : editEventId
+                  ? "Update Event"
+                  : "Create Event"}
               </Button>
             </div>
           </div>

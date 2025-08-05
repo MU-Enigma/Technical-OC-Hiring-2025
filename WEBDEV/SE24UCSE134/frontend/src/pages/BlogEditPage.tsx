@@ -131,7 +131,14 @@ export default function BlogEditPage() {
               theme="snow"
               value={form.content}
               onChange={(value) => setForm({ ...form, content: value })}
-              className="h-full"
+              className="[&_.ql-toolbar]:bg-neutral-400 [&_.ql-toolbar]:border-gray-200 [&_.ql-toolbar]:rounded-t-lg
+                           [&_.ql-container]:border-gray-200 [&_.ql-container]:rounded-b-lg
+                           [&_.ql-editor]:min-h-[300px]
+                           [&_.ql-toolbar_button]:text-gray-600 hover:[&_.ql-toolbar_button]:text-gray-900
+                           [&_.ql-active]:text-gray-900 [&_.ql-active]:bg-gray-200
+                           [&_.ql-picker-label]:text-gray-600 [&_.ql-picker-options]:bg-gray-50
+                           [&_.ql-picker-options]:border-gray-200 [&_.ql-picker-item]:text-gray-700
+                           h-full"
               style={{ height: "calc(100% - 42px)" }}
               modules={{
                 toolbar: [
@@ -145,6 +152,23 @@ export default function BlogEditPage() {
                   ["clean"],
                 ],
               }}
+              formats={[
+                "header",
+                "bold",
+                "italic",
+                "underline",
+                "strike",
+                "list",
+                "bullet",
+                "indent",
+                "link",
+                "image",
+                "color",
+                "background",
+                "blockquote",
+                "code-block",
+                "clean",
+              ]}
             />
           </div>
         </div>

@@ -4,7 +4,15 @@ import { api } from "@/lib/api";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { PlusIcon, Trash2, Edit, BookOpen, Eye, EyeOff } from "lucide-react";
+import {
+  PlusIcon,
+  Trash2,
+  Edit,
+  BookOpen,
+  Eye,
+  EyeOff,
+  Home,
+} from "lucide-react";
 
 interface Blog {
   id: number;
@@ -44,16 +52,15 @@ export default function BlogPage() {
 
       const allBlogs = [...publicBlogs, ...myBlogs];
       const uniqueBlogs = allBlogs.filter(
-        (blog, index, self) =>
-          index === self.findIndex((b) => b.id === blog.id),
+        (blog, index, self) => index === self.findIndex((b) => b.id === blog.id)
       );
 
       setBlogs(uniqueBlogs);
       setPublishedBlogs(uniqueBlogs.filter((blog) => blog.posted));
       setUnpublishedBlogs(
         uniqueBlogs.filter(
-          (blog) => !blog.posted && blog.authorId === currentUserId,
-        ),
+          (blog) => !blog.posted && blog.authorId === currentUserId
+        )
       );
     } catch (err: any) {
       console.error("Failed to fetch blogs:", err);
@@ -224,7 +231,17 @@ export default function BlogPage() {
   return (
     <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold">Blogs</h1>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            onClick={() => navigate("/")}
+          >
+            <Home className="w-5 h-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Blogs</h1>
+        </div>
         {isAuthenticated() && (
           <Button onClick={handleCreate} className="w-full sm:w-auto">
             <PlusIcon className="w-4 h-4 mr-2" />

@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 type AuthMode = "login" | "register";
 
@@ -20,6 +21,7 @@ export function AuthWidget() {
   const [dialog, setDialog] = useState<AuthMode | null>(null);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -53,7 +55,7 @@ export function AuthWidget() {
         mode === "login" ? "Login successful" : "Registration successful",
         {
           description: `Welcome, ${user.name}!`,
-        },
+        }
       );
 
       setDialog(null);
@@ -118,12 +120,18 @@ export function AuthWidget() {
   );
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 flex-wrap">
       {user ? (
         <>
           <span className="text-muted-foreground">
             Hi, <b>{user.name}</b>
           </span>
+          <Button onClick={() => navigate("/blogs")} variant="secondary">
+            Blogs
+          </Button>
+          <Button onClick={() => navigate("/events")} variant="secondary">
+            Events
+          </Button>
           <Button variant="outline" onClick={handleLogout}>
             Sign Out
           </Button>
