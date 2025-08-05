@@ -97,9 +97,9 @@ export const updateEvent = async (req: Request, res: Response) => {
     const existing = await prisma.event.findUnique({ where: { id: eventId } });
 
     if (!existing) return res.status(404).json({ message: "Event not found" });
-    if (existing.userId !== req.userId) {
-      return res.status(403).json({ message: "Unauthorized" });
-    }
+    // if (existing.userId !== req.userId) {
+    //   return res.status(403).json({ message: "Unauthorized" });
+    // }
 
     const updated = await prisma.event.update({
       where: { id: eventId },
@@ -125,9 +125,9 @@ export const deleteEvent = async (req: Request, res: Response) => {
     const existing = await prisma.event.findUnique({ where: { id: eventId } });
 
     if (!existing) return res.status(404).json({ message: "Event not found" });
-    if (existing.userId !== req.userId) {
-      return res.status(403).json({ message: "Unauthorized" });
-    }
+    // if (existing.userId !== req.userId) {
+    //   return res.status(403).json({ message: "Unauthorized" });
+    // }
 
     await prisma.event.delete({ where: { id: eventId } });
     res.json({ message: "Event deleted successfully" });

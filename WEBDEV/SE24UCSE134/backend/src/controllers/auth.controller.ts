@@ -28,7 +28,7 @@ export const registerController = async (req: Request, res: Response) => {
     });
 
     //jwt
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+    const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, JWT_SECRET, {
       expiresIn: "15d",
     });
 
@@ -62,7 +62,7 @@ export const loginController = async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+    const token = jwt.sign({ id: user.id, email: user.email, isAdmin: user.isAdmin }, JWT_SECRET, {
       expiresIn: "15d",
     });
 
@@ -71,6 +71,7 @@ export const loginController = async (req: Request, res: Response) => {
         id: user.id,
         email: user.email,
         name: user.name,
+        isAdmin: user.isAdmin
       },
       token,
     });
@@ -79,6 +80,26 @@ export const loginController = async (req: Request, res: Response) => {
   }
 };
 
-export const getMe = (req: Request, res: Response) => {
-  return res.json({ userId: req.userId });
+
+export const getMe = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.userId },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        isAdmin: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.json({userId: req.userId, isAdmin: req.isAdmin, name: user.name});
+  } catch (err) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
+

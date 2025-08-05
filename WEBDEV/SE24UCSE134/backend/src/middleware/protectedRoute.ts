@@ -17,8 +17,13 @@ export const protectedRoute = (
   const token = authHeader.split(" ")[1]!;
 
   try {
-    const decode = jwt.verify(token, process.env.JWT_SECRET!);
-    req.userId = (decode as { id: number }).id;
+    const decode = jwt.verify(token, process.env.JWT_SECRET!) as {
+      id: number;
+      isAdmin: boolean;
+    };
+
+    req.userId = decode.id;
+    req.isAdmin = decode.isAdmin;
     next();
   } catch (err) {
     return res.status(401).json({ error: "Invalid/expired token" });

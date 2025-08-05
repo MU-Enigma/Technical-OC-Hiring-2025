@@ -15,7 +15,7 @@ const router = express.Router();
 
 router.get("/", getPublicBlogs);
 router.get("/me", protectedRoute, getMyBlogs);
-router.get("/:id", protectedRoute, getBlogsById);
+router.get("/:id", getBlogsById); //protectedRoute not needed
 router.post("/", protectedRoute, validate(createBlogSchema), createBlog);
 router.put("/:id", protectedRoute, validate(updateBlogSchema), updateBlog);
 router.delete("/:id", protectedRoute, deleteBlog);

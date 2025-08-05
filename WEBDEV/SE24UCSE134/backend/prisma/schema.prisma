@@ -31,12 +31,13 @@ model Event {
 }
 
 model User {
+  id             Int      @id @default(autoincrement())
   name           String
   imageUrl       String?
   createdAt      DateTime @default(now())
   email          String   @unique
   hashedPassword String
-  id             Int      @id @default(autoincrement())
+  isAdmin        Boolean  @default(false)
   Blog           Blog[]
   Event          Event[]
 }

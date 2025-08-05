@@ -43,8 +43,8 @@ export const getBlogsById = async (req: Request, res: Response) => {
     });
     if (!blog) return res.status(404).json({ message: "Blog not found" });
 
-    if (!blog.posted && blog.authorId !== userId)
-      return res.status(403).json({ message: "Unauhorized" });
+    // if (!blog.posted && blog.authorId !== userId) 
+    //   return res.status(403).json({ message: "Unauhorized" });
 
     res.json(blog);
   } catch (error) {
@@ -127,20 +127,24 @@ export const updateBlog = async (req: Request, res: Response) => {
 
 export const deleteBlog = async (req: Request, res: Response) => {
   const blogId = Number(req.params.id);
-  try {
-    const existing = await prisma.blog.findUnique({
-      where: { id: blogId },
-    });
 
+  try {
+    const existing = await prisma.blog.findUnique({ where: { id: blogId } });
     if (!existing) return res.status(404).json({ message: "Blog not found" });
 
-    if (existing.authorId !== req.userId)
+    if (!req.isAdmin && existing.authorId !== req.userId) {
       return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    if (req.isAdmin && existing.authorId !== req.userId && !existing.posted) {
+      return res.status(403).json({ message: "Admins cannot delete unpublished blogs they do not own" });
+    }
 
     await prisma.blog.delete({ where: { id: blogId } });
     res.json({ message: "Blog deleted successfully" });
-  } catch (error) {
-    console.error("Error in deleting blog", error);
-    res.status(500).json({ message: "Could not delete the blog " });
+  } catch (err) {
+    console.error("Error deleting blog", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
