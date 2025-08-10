@@ -63,6 +63,8 @@ _Replace with your MNIST accuracy & loss graphs here._
   ```bash
    python train_mnist.py
 
+---
+
 ## Confusion matrix
 <img width="501" height="393" alt="image" src="https://github.com/user-attachments/assets/cb9111f0-ff8f-4a7b-b564-652f14651d45" />
 
