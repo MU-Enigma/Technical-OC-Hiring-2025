@@ -21,3 +21,9 @@ Backend: Next.js API Routes, Node.js
 Database: MongoDB (Mongoose ORM)
 HTTP Client: Axios
 
+## 🎥 Demo Video
+
+Watch the demo here:
+(https://youtu.be/5sSpQues5rM)
+
+
