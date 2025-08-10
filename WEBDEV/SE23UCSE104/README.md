@@ -1,37 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+MU-EVENTS&JOURNALS
 
-## Getting Started
+📖 Overview
+A full-stack web application built with Next.js and MongoDB that allows users to view campus events, read blogs, and contribute their own blog posts.
+Users can Create, Read, Update, and Delete (CRUD) blogs at any time, making it an interactive and community-driven platform.
 
-First, run the development server:
+✨ Features
+📰 Blog Management: Add, edit, and delete blogs.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+📅 Events Section: View upcoming events.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔍 Responsive UI: Works on desktop, tablet, and mobile.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+🗄 MongoDB Integration: Stores blogs and event data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⚡ API Routes: Backend logic using Next.js API routes.
 
-## Learn More
+🛠 Tech Stack
+Frontend: Next.js, React, Tailwind CSS
+Backend: Next.js API Routes, Node.js
+Database: MongoDB (Mongoose ORM)
+HTTP Client: Axios
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# mu-events" 
