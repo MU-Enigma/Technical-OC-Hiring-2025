@@ -27,8 +27,9 @@
 
 ## Concept Origin
 Made for **Shader: The GameDev Club’s head application**.  
-Bend time, dodge bullets and *hit* bullets.
-![Demo Video](https://mahindraecolecentrale-my.sharepoint.com/:v:/g/personal/se24uari173_mahindrauniversity_edu_in/EVcU8gIRpshEuEHbtDflxq8Bjb-7yXYaLreDiliT-St94g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=kXUEEa)
+Bend time, dodge bullets, and *hit* bullets.
+
+**[Watch Demo Video](https://mahindraecolecentrale-my.sharepoint.com/:v:/g/personal/se24uari173_mahindrauniversity_edu_in/EVcU8gIRpshEuEHbtDflxq8Bjb-7yXYaLreDiliT-St94g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=kXUEEa)**  
 
 ---
 
@@ -39,8 +40,8 @@ Bend time, dodge bullets and *hit* bullets.
 
 ## Credits
 - **Developer:** blueberry  
-- **Engine:** Unity
--**Asset Credits** In itch.io page
+- **Engine:** Unity  
+- **Asset Credits:** Listed on itch.io page  
 - **Time Taken:** 5 days of sleep deprivation and questionable life choices.
 
 ---
