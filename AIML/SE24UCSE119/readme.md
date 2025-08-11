@@ -1,72 +1,134 @@
-# Neural Network from Scratch with NumPy & Pandas
+⁠ `markdown
+# NumPy Neural Network from Scratch — Breast Cancer & MNIST
 
-## Project Overview
-This project demonstrates how to **design, implement, and train a neural network from scratch** using only NumPy and Pandas — without relying on frameworks like PyTorch or TensorFlow.
+This repository contains a **pure NumPy implementation** of a small neural network framework and end-to-end demos on:
 
-It was developed in three stages:
-1. **Core Script** – Single-file feedforward neural network for classification.
-2. **OOP Library** – Modular, PyTorch-like API with reusable components.
-3. **Real-World Application** – Applied the library to datasets like Breast Cancer and MNIST.
-
-The aim was to gain a **deep understanding of the internal workings of neural networks** — forward/backward propagation, gradient descent, activation functions, and more.
-
----
+- **Breast Cancer Wisconsin Dataset** (binary classification)
+- **MNIST Handwritten Digit Dataset** (multi-class classification, softmax output)
+- **Custom Learning Rate Decay Scheduler**
+- Training/Validation/Test splits without data leakage
+- Optional **visualizations**: loss curves, confusion matrix, per-class metrics
 
 ## Features
-- Fully vectorized operations with NumPy
-- Multiple activation functions (Sigmoid, ReLU, Softmax)
-- Customizable network architecture
-- Cross-Entropy and MSE loss functions
-- Mini-batch training support
-- Regularization options (Dropout, L2)
+
+- **From-scratch neural network library** (no TensorFlow/PyTorch)
+- Modular `Sequential` + `Dense` layers
+- Activation functions: ReLU, Sigmoid, Softmax
+- Loss functions: Binary Cross-Entropy, Categorical Cross-Entropy
+- Optimizers: SGD, SGD with Weight Decay & Learning Rate Decay
+- Early stopping support
+- Data preprocessing helpers (standardization, one-hot encoding, flattening)
+- Works entirely in **Google Colab** or any Python 3 environment
 
 ---
 
 
----
+## Getting Started
 
-## Results – Breast Cancer Dataset
-| Metric    | Class 0 | Class 1 | Macro Avg | Weighted Avg |
-|-----------|---------|---------|-----------|--------------|
-| Precision | 0.97    | 0.95    | 0.96      | 0.96         |
-| Recall    | 0.91    | 0.99    | 0.95      | 0.96         |
-| F1-Score  | 0.94    | 0.97    | 0.95      | 0.96         |
-| Support   | 43      | 71      | —         | —            |
+### Clone the repo
 
-**Overall Accuracy:** 96%  
-**Observation:** Model detects Class 1 slightly better than Class 0.  
-**Improvement Ideas:** Adjust class weights or thresholds to balance recall.
+ ⁠bash
+git clone https://github.com/yourusername/numpy-nn-breast-mnist.git
+cd numpy-nn-breast-mnist
 
----
 
-## MNIST Dataset
-- Input: 784 neurons (28×28 image flattened)
-- Hidden Layers: 1–2 layers with ReLU activation
-- Output: 10 neurons (Softmax for 0–9 digit classification)
+⁠ ### install dependencies
 
-_Replace with your MNIST accuracy & loss graphs here._
+This project only uses:
 
----
+ ⁠bash
+pip install numpy pandas scikit-learn matplotlib tensorflow
 
-## Confusion matrix
-<img width="501" height="393" alt="image" src="https://github.com/user-attachments/assets/cb9111f0-ff8f-4a7b-b564-652f14651d45" />
+
+> **Note:** TensorFlow is only used for loading MNIST data — the model itself is pure NumPy.
+
+### Run in Google Colab
+
+* Upload `notebook.ipynb` to Colab
+* Run cells **in order** (Cells 1 → 6)
+* For MNIST: The merged training cell automatically handles validation split and LR decay.
 
 ---
 
-## How to Run
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/your-username/neural-network-from-scratch.git
-   cd neural-network-from-scratch
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-3. **Run the Breast Cancer example:**
-   ```bash
-   python core_nn.py
-4. **Run MNIST training:**
-  ```bash
-   python train_mnist.py
+## Datasets
+
+### Breast Cancer (binary classification)
+
+* 30 features (real-valued)
+* Labels: Malignant (0) / Benign (1)
+* Standardized using **train split mean/std** (no leakage)
+
+### MNIST (multi-class)
+
+* 28×28 grayscale images
+* Flattened to vectors of length 784
+* Pixel values scaled to **\[0,1]**
+
+---
+
+## Example Results
+
+**Breast Cancer**
 
 
+Test Accuracy: ~97%
 
+
+**MNIST**
+
+
+Test Accuracy: ~96% (with LR decay)
+
+
+---
+
+## Visualizations
+
+This repo can generate:
+
+* **Loss curves** (train vs. validation)
+* **Learning rate schedule**
+* **Confusion matrix** (counts & normalized)
+* **Per-class metrics** (precision, recall, F1)
+* **Misclassified examples** preview
+
+Example (MNIST Loss Curve):
+
+![Loss Curve](images/mnist_loss_curve.png)
+
+---
+
+## How It Works
+
+* **Forward pass**: Compute layer activations
+* **Loss computation**: Compare predictions with ground truth
+* **Backward pass**: Compute gradients via chain rule
+* **Optimizer step**: Update parameters (optionally with weight decay / LR schedule)
+
+---
+
+## Documentation
+
+A **full beginner-friendly explanation** of every line of code is available here:
+[📄 numpy\_nn\_breast\_mnist\_documentation.md](numpy_nn_breast_mnist_documentation.md)
+
+---
+
+## Future Improvements
+
+* Add convolutional layers
+* Implement Adam optimizer
+* Add dropout & batch normalization
+* Support custom dataset loading
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!
+For major changes, please open an issue first to discuss what you’d like to change.
+
+
+---
+
+```
