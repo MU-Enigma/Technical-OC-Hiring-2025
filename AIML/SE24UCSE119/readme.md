@@ -1,4 +1,3 @@
-⁠ `markdown
 # NumPy Neural Network from Scratch — Breast Cancer & MNIST
 
 This repository contains a **pure NumPy implementation** of a small neural network framework and end-to-end demos on:
@@ -92,9 +91,10 @@ This repo can generate:
 * **Per-class metrics** (precision, recall, F1)
 * **Misclassified examples** preview
 
-Example (MNIST Loss Curve):
+Example (MNIST misclassified):
 
-![Loss Curve](images/mnist_loss_curve.png)
+<img width="758" height="788" alt="image" src="https://github.com/user-attachments/assets/613fadd2-7bb1-42af-9561-e2fc6a28dbe9" />
+
 
 ---
 
@@ -107,12 +107,6 @@ Example (MNIST Loss Curve):
 
 ---
 
-## Documentation
-
-A **full beginner-friendly explanation** of every line of code is available here:
-[📄 numpy\_nn\_breast\_mnist\_documentation.md](numpy_nn_breast_mnist_documentation.md)
-
----
 
 ## Future Improvements
 
@@ -120,14 +114,6 @@ A **full beginner-friendly explanation** of every line of code is available here
 * Implement Adam optimizer
 * Add dropout & batch normalization
 * Support custom dataset loading
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome!
-For major changes, please open an issue first to discuss what you’d like to change.
-
 
 ---
 
