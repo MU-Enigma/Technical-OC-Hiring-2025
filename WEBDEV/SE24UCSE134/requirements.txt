@@ -1,0 +1,5 @@
+To run this project locally, make sure you have the following installed on your system:
+
+Bun (highly recommended) -> NOTE: if youre not using bun, You'll need to tweak the "dev" script yourself
+Docker -> to spin up postgres
+Postgresql CLI (optional) --> to interact with db locally
